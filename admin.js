@@ -64,6 +64,7 @@ function cargarClientes() {
                         <td>${cliente.age}</td>
                         <td>${cliente.phone}</td>
                         <td>${cliente.local}</td>
+                        <td>${cliente.plan}</td>
                     </tr>
             `;
 
