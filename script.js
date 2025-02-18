@@ -83,6 +83,7 @@ document.getElementById("ingreso").onclick = async (e) => {
             local: domiciliado,
             age: age,
             plan: "yet",
+            timestamp: new Date(),
         });
 
         console.log("Redirigiendo al catálogo...");

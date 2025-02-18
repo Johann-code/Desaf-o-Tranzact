@@ -1,11 +1,19 @@
-function Obtener_Resultado() {
-    var nom_comp = localStorage.getItem("name");
-    var edad = localStorage.getItem("age");
-    var direccion = localStorage.getItem("local");
-    var telefono = localStorage.getItem("phone");
-    var dni = localStorage.getItem("dni")
+// // IMPORTAR FIREBASE Y FIRESTORE
+// import './firebase.js';
+import { db, } from './firebase.js';
+// import { updateProfile, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+import { getFirestore, collection, addDoc, query } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
-    const tabla = document.getElementById("tabla");
+var nom_comp = localStorage.getItem("name");
+var edad = localStorage.getItem("age");
+var direccion = localStorage.getItem("local");
+var telefono = localStorage.getItem("phone");
+var dni = localStorage.getItem("dni")
+
+const tabla = document.getElementById("tabla");
+
+
+function Obtener_Resultado() {
     tabla.innerHTML = "";
 
     const fila = document.createElement("tr");
@@ -30,3 +38,45 @@ function Obtener_Resultado() {
     tabla.appendChild(fila)
 }
 Obtener_Resultado();
+
+function cargarClientes() {
+    try {
+        tabla.innerHTML = "";
+        const clientesQuery = query(collection(db, "clientes"), orderBy("timestamp", "desc"));
+        const consulta = await getDocs(clientesQuery);
+
+        consulta.forEach((doc) => {
+            const cliente = doc.data();
+            const nuevoCliente = document.createElement("tr");
+            //nuevoCliente.classList.add("cliente");
+
+            // Convertir Timestamp a una fecha legible
+            const fechaPublicacion = cliente.timestamp.toDate();
+            const horaPublicacion = fechaPublicacion.toLocaleTimeString();
+            const fechaFormateada = fechaPublicacion.toLocaleDateString();
+
+            // Contenido de la publicación
+            let contenido = `
+              <!-- Estructura de TR -->
+              <tr>
+                        <td>${cliente.name}</td>
+                        <td>${cliente.dni}</td>
+                        <td>${cliente.age}</td>
+                        <td>${cliente.phone}</td>
+                        <td>${cliente.local}</td>
+                    </tr>
+            `;
+
+            nuevoCliente.innerHTML = contenido; // Asignar contenido al div
+            tabla.appendChild(nuevoCliente); // Agregar la publicación al contenedor
+
+            //Cargar los comentarios de esta publicación
+            cargarComentarios(doc.id);
+        });
+    } catch (error) {
+        console.log("Error al cargar publicaciones:", error);
+
+    }
+}
+
+cargarClientes()
