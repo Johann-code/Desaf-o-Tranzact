@@ -1,0 +1,90 @@
+body {
+    font-family: "proxima-nova", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8ff; /* Azul claro para sensación de confianza y salud */
+    color: #2c3e50; /* Azul oscuro para mejor lectura */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+nav {
+    background-color: #2980b9; /* Azul vibrante para destacar navegación */
+    padding:  5px 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style: none;
+    align-items: center;
+}
+nav #phone_tranzact {
+    margin: 0 15px;
+}
+nav #phone_tranzact a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    
+}
+input {
+    margin: 10px;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+}
+button {
+    padding: 12px 20px;
+    background-color: #27ae60; /* Verde para dar sensación de seguridad y salud */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+button:hover {
+    background-color: #219150;
+}
+#catalog {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+.card {
+    background: white;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    text-align: left;
+}
+.card h3 {
+    color: #2980b9;
+    margin-bottom: 10px;
+}
+.card p {
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+#tran_log{
+    height: 70px;
+}
+main {
+    margin: auto;
+    padding: 65px 20px;
+}
+form .registro{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+footer{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
