@@ -1,7 +1,7 @@
 function Obtener_Resultado() {
     var nom_comp = localStorage.getItem("name");
     var edad = localStorage.getItem("age");
-    var direccion = localStorage.getItem("domiciliado");
+    var direccion = localStorage.getItem("local");
     var telefono = localStorage.getItem("phone");
     var dni = localStorage.getItem("dni")
 
