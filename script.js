@@ -1,8 +1,8 @@
 // // IMPORTAR FIREBASE Y FIRESTORE
 // import './firebase.js';
-// import { auth } from './firebase.js';
+import { db, } from './firebase.js';
 // import { updateProfile, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
-// import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
 
 // document.getElementById("ingreso").onclick = async (e) => {
@@ -12,9 +12,9 @@
 //     const phone = document.getElementById("phone").value;
 //     const fecha_nacimiento = document.getElementById("born").value;
 //     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMTUsImV4cCI6MTc0MDQ0MjEyNX0.2Qgl-7M_J6Daz2rdl5gUNelq9iXO7UwpzM4mypGTvrc";
-//     const respuesta = await fetch(`https://miapi.cloud/v1/dni/${dni}`, {
-//        headers: { Authorization: `Bearer ${token}` },
-//     });
+    // const respuesta = await fetch(`https://miapi.cloud/v1/dni/${dni}`, {
+    //    headers: { Authorization: `Bearer ${token}` },
+    // });
 
 //     const {datos} = await respuesta.json();
 //     console.log(datos);
@@ -58,7 +58,8 @@ document.getElementById("ingreso").onclick = async (e) => {
     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMTUsImV4cCI6MTc0MDQ0MjEyNX0.2Qgl-7M_J6Daz2rdl5gUNelq9iXO7UwpzM4mypGTvrc";
     try {
         const respuesta = await fetch(`https://miapi.cloud/v1/dni/${dni}`, {
-       headers: { Authorization: `Bearer ${token}` },    });
+            headers: { Authorization: `Bearer ${token}` },
+         });
 
         const { datos } = await respuesta.json();
         console.log(datos);
@@ -73,6 +74,16 @@ document.getElementById("ingreso").onclick = async (e) => {
         localStorage.setItem ("phone", phone);
         localStorage.setItem ("local", domiciliado);
         localStorage.setItem ("age", age)
+
+        //Subir los datso a Firestore
+        await addDoc(collection(db, "clientes"), {
+            name: usuario,
+            dni: dni,
+            phone: phone,
+            local: domiciliado,
+            age: age,
+            plan: "yet",
+        });
 
         console.log("Redirigiendo al catálogo...");
         window.location = "catalogo.html"; // Redirigir a la página del catálogo
