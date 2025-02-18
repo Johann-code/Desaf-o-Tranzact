@@ -2,7 +2,7 @@
 // import './firebase.js';
 import { db, } from './firebase.js';
 // import { updateProfile, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
-import { getFirestore, collection, addDoc, query } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+import { getFirestore, orderBy, collection, getDocs, addDoc, query, doc } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
 var nom_comp = localStorage.getItem("name");
 var edad = localStorage.getItem("age");
