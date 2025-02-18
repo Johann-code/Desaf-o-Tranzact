@@ -51,9 +51,9 @@ function cargarClientes() {
             //nuevoCliente.classList.add("cliente");
 
             // Convertir Timestamp a una fecha legible
-            const fechaPublicacion = cliente.timestamp.toDate();
-            const horaPublicacion = fechaPublicacion.toLocaleTimeString();
-            const fechaFormateada = fechaPublicacion.toLocaleDateString();
+            // const fechaPublicacion = cliente.timestamp.toDate();
+            // const horaPublicacion = fechaPublicacion.toLocaleTimeString();
+            // const fechaFormateada = fechaPublicacion.toLocaleDateString();
 
             // Contenido de la publicación
             let contenido = `
