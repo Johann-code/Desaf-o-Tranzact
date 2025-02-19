@@ -3,6 +3,9 @@ function usuario() {
 }
 usuario();
 
+var edad = localStorage.getItem("age");
+console.log(edad);
+
 document.addEventListener("DOMContentLoaded", function () {
     loadCatalog();
 });
@@ -111,41 +114,62 @@ function loadCatalog() {
     const catalog = document.getElementById("catalog");
     catalog.innerHTML = "";
     plans.forEach(plan => {
+        var categoria = plan.category.trim();
+        var id_card = categoria.replace(/ /g, "");
+        console.log(id_card);
         const card = document.createElement("div");
-        //card.className = "card";
+        card.id = id_card;
+        card.className = "plan";
+
         card.innerHTML = `
         <h2>${plan.category}</h2>
-        <section class="card">
-            <h3>${plan.options[0].name}</h3>
-            <p>${plan.options[0].price}</p>
-            <ul>
-                <li>${plan.options[0].description[0]}</li>
-                <li>${plan.options[0].description[1]}</li>
-                <li>${plan.options[0].description[2]}</li>
-            </ul>
-            <button class="quiero_dormir" onclick="openModal('${plan.options[0].name}', '${plan.options[0].price}')">Comprar</button>
-        </section>
-        <section class="card">
-            <h3>${plan.options[1].name}</h3>
-            <p>${plan.options[1].price}</p>
-            <ul>
-                <li>${plan.options[1].description[0]}</li>
-                <li>${plan.options[1].description[1]}</li>
-                <li>${plan.options[1].description[2]}</li>
-            </ul>
-            <button class="quiero_dormir" onclick="openModal('${plan.options[1].name}', '${plan.options[1].price}')">Comprar</button>
-        </section>
-        <section class="card">
-            <h3>${plan.options[2].name}</h3>
-            <p>${plan.options[2].price}</p>
-            <ul>
-                <li>${plan.options[2].description[0]}</li>
-                <li>${plan.options[2].description[1]}</li>
-                <li>${plan.options[2].description[2]}</li>
-            </ul>
-            <button class="quiero_dormir" onclick="openModal('${plan.options[2].name}', '${plan.options[2].price}')">Comprar</button>
-        </section>`;
+        <div class="planes_contenedor">
+            <section class="card">
+                <h3>${plan.options[0].name}</h3>
+                <p>${plan.options[0].price}</p>
+                <ul>
+                    <li>${plan.options[0].description[0]}</li>
+                    <li>${plan.options[0].description[1]}</li>
+                    <li>${plan.options[0].description[2]}</li>
+                </ul>
+                <button class="quiero_dormir" onclick="openModal('${plan.options[0].name}', '${plan.options[0].price}')">Comprar</button>
+            </section>
+            <section class="card">
+                <h3>${plan.options[1].name}</h3>
+                <p>${plan.options[1].price}</p>
+                <ul>
+                    <li>${plan.options[1].description[0]}</li>
+                    <li>${plan.options[1].description[1]}</li>
+                    <li>${plan.options[1].description[2]}</li>
+                </ul>
+                <button class="quiero_dormir" onclick="openModal('${plan.options[1].name}', '${plan.options[1].price}')">Comprar</button>
+            </section>
+            <section class="card">
+                <h3>${plan.options[2].name}</h3>
+                <p>${plan.options[2].price}</p>
+                <ul>
+                    <li>${plan.options[2].description[0]}</li>
+                    <li>${plan.options[2].description[1]}</li>
+                    <li>${plan.options[2].description[2]}</li>
+                </ul>
+                <button class="quiero_dormir" onclick="openModal('${plan.options[2].name}', '${plan.options[2].price}')">Comprar</button>
+            </section>
+        </div>`;
         catalog.appendChild(card);
+        
+        if (edad >= 60 && edad < 70) {
+            document.getElementById("Jovenadultomayor").classList.remove("plan");
+            document.getElementById("Jovenadultomayor").classList.add("plan--show");
+        } else if (edad >= 70 && edad < 85) {
+            document.getElementById("Adultomayorestablecido").classList.remove("plan");
+            document.getElementById("Adultomayorestablecido").classList.add("plan--show");
+        } else if (edad >= 85) {
+            document.getElementById("Adultomayoravanzado").classList.remove("plan");
+            document.getElementById("Adultomayoravanzado").classList.add("plan--show");
+        } else {
+            console.log("No hay planes disponibles para esta edad.");
+            return;
+        }
     });
 }
 
@@ -161,6 +185,10 @@ function closeModal() {
 }
 
 function confirmPurchase() {
-    alert("Compra realizada con éxito");
+    Swal.fire({
+        title: "¡Compra realizada!",
+        text: "En breve, un especialista te contactará para brindarte asesoramiento personalizado.",
+        icon: "success"
+      });
     closeModal();
 }

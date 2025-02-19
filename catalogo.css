@@ -31,3 +31,13 @@
     opacity: 1;
     pointer-events: unset;
 }
+.plan {
+    display: none;
+}
+.plan--show {
+    display: block;
+}
+.planes_contenedor{
+    display: flex;
+    width: 100%;
+}
