@@ -65,15 +65,11 @@ async function cargarClientes() {
                         <td>${cliente.age}</td>
                         <td>${cliente.phone}</td>
                         <td>${cliente.local}</td>
-                        <td>${cliente.plan}</td>
                     </tr>
             `;
-
             nuevoCliente.innerHTML = contenido; // Asignar contenido al div
             tabla.appendChild(nuevoCliente); // Agregar la publicación al contenedor
 
-            //Cargar los comentarios de esta publicación
-            cargarComentarios(doc.id);
         });
     } catch (error) {
         console.log("Error al cargar publicaciones:", error);
