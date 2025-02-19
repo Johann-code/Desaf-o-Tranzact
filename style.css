@@ -2,14 +2,14 @@ body {
     font-family: "proxima-nova", sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f8ff; /* Azul claro para sensación de confianza y salud */
+    background-color: rgb(252, 235, 228);
     color: #2c3e50; /* Azul oscuro para mejor lectura */
     text-align: center;
     display: flex;
     flex-direction: column;
 }
 nav {
-    background-color: #2980b9; /* Azul vibrante para destacar navegación */
+    background-color: black;
     padding:  5px 15px;
     display: flex;
     flex-direction: row;
@@ -36,7 +36,7 @@ input {
 }
 button {
     padding: 12px 20px;
-    background-color: #27ae60; /* Verde para dar sensación de seguridad y salud */
+    background-color: rgb(125, 32, 98);
     color: white;
     border: none;
     cursor: pointer;
@@ -44,7 +44,7 @@ button {
     border-radius: 5px;
 }
 button:hover {
-    background-color: #219150;
+    background-color: rgb(85, 22, 67);
 }
 #catalog {
     display: flex;
@@ -78,7 +78,7 @@ button:hover {
 }
 main {
     margin: auto;
-    padding: 65px 20px;
+    padding: 65px 0px;
 }
 form .registro{
     width: 500px;
@@ -107,16 +107,10 @@ footer{
         height: 70px;
         display: block;
     }
-    nav {
-        background-color: black;
+    card{
+        padding: 0;
     }
-    body{
-        background-color: rgb(252, 235, 228);
-    }
-    button{
-        background-color: rgb(125, 32, 98);
-    }
-    button:hover{
-        background-color: rgb(85, 22, 67);
+    catalog{
+        margin: 0;
     }
 }
