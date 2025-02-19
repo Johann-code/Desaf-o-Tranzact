@@ -55,7 +55,7 @@ document.getElementById("ingreso").onclick = async (e) => {
     }
 
     // Obtener datos desde la API
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMTUsImV4cCI6MTc0MDQ0MjEyNX0.2Qgl-7M_J6Daz2rdl5gUNelq9iXO7UwpzM4mypGTvrc";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMTcsImV4cCI6MTc0MDU1NzkwNH0.EKp141zQdRRuX46mhziymzG56rJtgdDxkSlrbyzci_g";
     try {
         const respuesta = await fetch(`https://miapi.cloud/v1/dni/${dni}`, {
        headers: { Authorization: `Bearer ${token}` },
