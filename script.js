@@ -42,14 +42,14 @@ document.getElementById("ingreso").onclick = async (e) => {
     const age = document.getElementById("age").value.trim();
 
     // Verificar si es el administrador
-    if (dni === "administrador" && phone === "administrador") {
+    if (dni === "12345678" && phone === "123456789") {
         console.log("Modo administrador activado");
         window.location = "admin.html"; // Redirigir al panel de admin
         return;
     }
 
     // Validaciones básicas
-    if (dni.length < 8 || phone.length < 9 || age === "") {
+    if ( dni.length != 8 || phone.length != 9 || age < 60) {
         alert("Datos inválidos");
         return;
     }
@@ -58,8 +58,8 @@ document.getElementById("ingreso").onclick = async (e) => {
     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMTUsImV4cCI6MTc0MDQ0MjEyNX0.2Qgl-7M_J6Daz2rdl5gUNelq9iXO7UwpzM4mypGTvrc";
     try {
         const respuesta = await fetch(`https://miapi.cloud/v1/dni/${dni}`, {
-            headers: { Authorization: `Bearer ${token}` },
-         });
+       headers: { Authorization: `Bearer ${token}` },
+    });
 
         const { datos } = await respuesta.json();
         console.log(datos);
