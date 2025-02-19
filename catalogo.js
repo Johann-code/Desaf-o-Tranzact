@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const plans = [
     {
-        category: "Joven aulto mayor",
+        category: "Joven adulto mayor",
         options: [
             {
                 name: "Plan Vital",
@@ -112,8 +112,39 @@ function loadCatalog() {
     catalog.innerHTML = "";
     plans.forEach(plan => {
         const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `<h3>${plan.name}</h3><p>${plan.price}</p><p>${plan.description}</p><button class="quiero_dormir" onclick="openModal('${plan.name}', '${plan.price}')">Comprar</button>`;
+        //card.className = "card";
+        card.innerHTML = `
+        <h2>${plan.category}</h2>
+        <section class="card">
+            <h3>${plan.options[0].name}</h3>
+            <p>${plan.options[0].price}</p>
+            <ul>
+                <li>${plan.options[0].description[0]}</li>
+                <li>${plan.options[0].description[1]}</li>
+                <li>${plan.options[0].description[2]}</li>
+            </ul>
+            <button class="quiero_dormir" onclick="openModal('${plan.options[0].name}', '${plan.options[0].price}')">Comprar</button>
+        </section>
+        <section class="card">
+            <h3>${plan.options[1].name}</h3>
+            <p>${plan.options[1].price}</p>
+            <ul>
+                <li>${plan.options[1].description[0]}</li>
+                <li>${plan.options[1].description[1]}</li>
+                <li>${plan.options[1].description[2]}</li>
+            </ul>
+            <button class="quiero_dormir" onclick="openModal('${plan.options[1].name}', '${plan.options[1].price}')">Comprar</button>
+        </section>
+        <section class="card">
+            <h3>${plan.options[2].name}</h3>
+            <p>${plan.options[2].price}</p>
+            <ul>
+                <li>${plan.options[2].description[0]}</li>
+                <li>${plan.options[2].description[1]}</li>
+                <li>${plan.options[2].description[2]}</li>
+            </ul>
+            <button class="quiero_dormir" onclick="openModal('${plan.options[2].name}', '${plan.options[2].price}')">Comprar</button>
+        </section>`;
         catalog.appendChild(card);
     });
 }
