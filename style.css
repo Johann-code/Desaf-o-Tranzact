@@ -72,6 +72,10 @@ button:hover {
 #tran_log{
     height: 70px;
 }
+.tra_log_mini{
+    height: 70px;
+    display: none;
+}
 main {
     margin: auto;
     padding: 65px 20px;
@@ -95,7 +99,24 @@ footer{
     }
 }
 @media (max-width: 400px) {
-    form .registro{
-        width: 90%;
+    #tran_log{
+        height: 70px;
+        display: none;
+    }
+    .tra_log_mini{
+        height: 70px;
+        display: block;
+    }
+    nav {
+        background-color: black;
+    }
+    body{
+        background-color: rgb(252, 235, 228);
+    }
+    button{
+        background-color: rgb(125, 32, 98);
+    }
+    button:hover{
+        background-color: rgb(85, 22, 67);
     }
 }
