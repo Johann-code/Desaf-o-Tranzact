@@ -62,7 +62,7 @@ button:hover {
     text-align: left;
 }
 .card h3 {
-    color: #2980b9;
+    color: rgb(111, 133, 38);
     margin-bottom: 10px;
 }
 .card p {

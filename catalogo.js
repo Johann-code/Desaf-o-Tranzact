@@ -113,10 +113,13 @@ const plans = [
 function loadCatalog() {
     const catalog = document.getElementById("catalog");
     catalog.innerHTML = "";
+
     plans.forEach(plan => {
         var categoria = plan.category.trim();
         var id_card = categoria.replace(/ /g, "");
+
         console.log(id_card);
+
         const card = document.createElement("div");
         card.id = id_card;
         card.className = "plan";
@@ -155,23 +158,34 @@ function loadCatalog() {
                 <button class="quiero_dormir" onclick="openModal('${plan.options[2].name}', '${plan.options[2].price}')">Comprar</button>
             </section>
         </div>`;
+
         catalog.appendChild(card);
-        
-        if (edad >= 60 && edad < 70) {
-            document.getElementById("Jovenadultomayor").classList.remove("plan");
-            document.getElementById("Jovenadultomayor").classList.add("plan--show");
-        } else if (edad >= 70 && edad < 85) {
-            document.getElementById("Adultomayorestablecido").classList.remove("plan");
-            document.getElementById("Adultomayorestablecido").classList.add("plan--show");
-        } else if (edad >= 85) {
-            document.getElementById("Adultomayoravanzado").classList.remove("plan");
-            document.getElementById("Adultomayoravanzado").classList.add("plan--show");
-        } else {
-            console.log("No hay planes disponibles para esta edad.");
-            return;
-        }
     });
+
+    // Ahora que los elementos están en el DOM, aplicar las clases
+    let planId = null;
+    
+    if (edad >= 60 && edad < 70) {
+        planId = "Jovenadultomayor";
+    } else if (edad >= 70 && edad < 85) {
+        planId = "Adultomayorestablecido";
+    } else if (edad >= 85) {
+        planId = "Adultomayoravanzado";
+    } else {
+        console.log("No hay planes disponibles para esta edad.");
+        return;
+    }
+
+    // Buscar el elemento por ID y modificar su clase si existe
+    const planElement = document.getElementById(planId);
+    if (planElement) {
+        planElement.classList.remove("plan");
+        planElement.classList.add("plan--show");
+    } else {
+        console.error(`El elemento con ID "${planId}" no existe en el DOM.`);
+    }
 }
+
 
 function openModal(name, price) {
     // alert("quiero_dormir")
