@@ -39,7 +39,7 @@ function Obtener_Resultado() {
 }
 Obtener_Resultado();
 
-function cargarClientes() {
+async function cargarClientes() {
     try {
         tabla.innerHTML = "";
         const clientesQuery = query(collection(db, "clientes"), orderBy("timestamp", "desc"));
@@ -47,6 +47,7 @@ function cargarClientes() {
 
         consulta.forEach((doc) => {
             const cliente = doc.data();
+            console.log(cliente);
             const nuevoCliente = document.createElement("tr");
             //nuevoCliente.classList.add("cliente");
 
