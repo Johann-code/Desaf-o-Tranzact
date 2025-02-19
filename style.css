@@ -81,10 +81,21 @@ form .registro{
     display: flex;
     flex-direction: column;
     text-align: left;
+    margin: auto;
 }
 footer{
     height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
+}
+@media (max-width: 600px) {
+    form .registro{
+        width: 90%;
+    }
+}
+@media (max-width: 400px) {
+    form .registro{
+        width: 90%;
+    }
 }
