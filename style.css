@@ -78,7 +78,7 @@ button:hover {
 }
 main {
     margin: auto;
-    padding: 65px 0px;
+    padding: 40px 0px;
 }
 form .registro{
     width: 500px;
@@ -87,12 +87,70 @@ form .registro{
     text-align: left;
     margin: auto;
 }
-footer{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
+footer {
+    background: linear-gradient(135deg, rgba(78, 84, 200, 0.9), rgba(143, 148, 251, 0.9)); /* Gradiente mÃ¡s fuerte */
+    color: white; /* Color del texto */
+    text-align: center; /* Centrado del texto */
+    padding: 8px 0; /* Espaciado pequeÃ±o */
+    position: fixed;
+    bottom: 0; /* Pegado al fondo */
+    left: 0;
+    width: 100%; /* Ocupa todo el ancho */
+    font-family: 'Arial', sans-serif; /* TipografÃ­a */
+    font-size: 16px; /* Aumento del tamaÃ±o de la fuente */
+    z-index: 9999; /* Asegura que estÃ© encima de todo */
+    opacity: 0.85; /* Opacidad ligeramente mÃ¡s alta */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra mÃ¡s fuerte */
+    animation: shine-background 3s infinite alternate; /* Efecto de resplandor en el fondo */
+  }
+  
+  footer span {
+    display: inline-block;
+    padding: 6px 10px; /* Aumento del relleno */
+    background-color: rgba(255, 255, 255, 0.3); /* Fondo translÃºcido */
+    border-radius: 50px; /* Bordes redondeados */
+    letter-spacing: 1.5px; /* Espaciado entre letras aumentado */
+    text-transform: uppercase; /* Texto en mayÃºsculas */
+    font-weight: 600; /* Peso de la fuente mÃ¡s marcado */
+    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease; /* TransiciÃ³n mÃ¡s fluida */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Efecto de resplandor en el texto */
+  }
+  
+  footer span:hover {
+    opacity: 3; /* Aumenta la opacidad al pasar el mouse */
+    transform: scale(1.15); /* Escala el texto un poco mÃ¡s */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 1); /* Aumento del brillo en hover */
+    color: #fff; /* Mantiene el color blanco brillante */
+  }
+  
+  footer::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 250%; /* TamaÃ±o mÃ¡s grande para el fondo */
+    height: 250%;
+    background: url('https://www.transparenttextures.com/patterns/diagonal-stripes-light.png') repeat; /* Fondo texturizado */
+    background-size: 50px 50px; /* Ajuste del tamaÃ±o de la textura */
+    transform: translate(-50%, -50%) rotate(45deg); /* Rota y centra el fondo */
+    z-index: -1; /* Coloca el fondo detrÃ¡s del texto */
+    opacity: 0.25; /* Aumento de opacidad en el fondo */
+    animation: move-background 10s linear infinite; /* Movimiento suave de fondo */
+  }
+  
+  @keyframes move-background {
+    0% { background-position: 0 0; }
+    100% { background-position: 100% 100%; }
+  }
+  
+  @keyframes shine-background {
+    0% {
+        background: linear-gradient(135deg, rgba(78, 84, 200, 0.9), rgba(143, 148, 251, 0.9));
+    }
+    100% {
+        background: linear-gradient(135deg, rgba(78, 84, 200, 1), rgba(143, 148, 251, 1));
+    }
+  }
 @media (max-width: 600px) {
     form .registro{
         width: 90%;
