@@ -46,4 +46,7 @@ td{
         font-weight: bold;
         white-space: nowrap;
     }
+    .exp_tab{
+        display: none;
+    }
 }
