@@ -2,14 +2,14 @@ body {
     font-family: "proxima-nova", sans-serif;
     margin: 0;
     padding: 0;
-    background-color: rgb(252, 235, 228);
+    background-color:rgb(170, 190, 214);
     color: #2c3e50; /* Azul oscuro para mejor lectura */
     text-align: center;
     display: flex;
     flex-direction: column;
 }
 nav {
-    background-color: black;
+    background-color: rgb(44, 41, 109);
     padding:  5px 15px;
     display: flex;
     flex-direction: row;
@@ -31,12 +31,12 @@ input {
     margin: 10px;
     padding: 12px;
     font-size: 16px;
-    border: 1px solid #3498db;
+    border: 1px solid rgb(73, 0, 125);
     border-radius: 5px;
 }
 button {
     padding: 12px 20px;
-    background-color: rgb(125, 32, 98);
+    background-color: rgb(104, 87, 199);
     color: white;
     border: none;
     cursor: pointer;
@@ -44,7 +44,7 @@ button {
     border-radius: 5px;
 }
 button:hover {
-    background-color: rgb(85, 22, 67);
+    background-color: rgb(78, 65, 155);
 }
 #catalog {
     display: flex;
@@ -62,7 +62,7 @@ button:hover {
     text-align: left;
 }
 .card h3 {
-    color: rgb(111, 133, 38);
+    color: rgb(73, 0, 125);
     margin-bottom: 10px;
 }
 .card p {
