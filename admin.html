@@ -37,6 +37,7 @@
         <p>Estas son las personas que han sido registradas en la plataforma.</p>
         
         <div id="panel_control">
+            <input type="text" id="searchBar" placeholder="Buscar por nombre o DNI..." onkeyup="searchTable()">
             <table id="tabla_excel">
                 <thead>
                     <tr>
@@ -45,7 +46,7 @@
                         <th>Edad</th>
                         <th>Teléfono</th>
                         <th>Ubicación</th>
-                        <!-- <th>Plan adquirido</th> -->
+                        <th>Plan adquirido</th>
                     </tr>
                 </thead>
                 <tbody id="tabla">
@@ -55,6 +56,7 @@
                         <td>74820388</td>
                         <td>969333854</td>
                         <td>Lima - Lima - Carabayllo</td>
+                        <td>Plan Vital</td>
                     </tr> -->
                 </tbody>
             </table>

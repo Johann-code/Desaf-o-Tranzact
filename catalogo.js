@@ -1,3 +1,10 @@
+// // IMPORTAR FIREBASE Y FIRESTORE
+// import './firebase.js';
+import { db } from './firebase.js';
+// import { updateProfile, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+
+
 function usuario() {
     document.getElementById("displayName").innerHTML = localStorage.getItem("name");
 }
@@ -6,8 +13,8 @@ usuario();
 var edad = localStorage.getItem("age");
 console.log(edad);
 
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("searchBar").addEventListener("keypress", function(e) {
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("searchBar").addEventListener("keypress", function (e) {
         if (e.key === "Enter") {
             searchPlans();
         }
@@ -26,7 +33,7 @@ const plans = [
                 name: "Plan Vital",
                 price: "$15/mes",
                 description: [
-                    "Cobertura para servicios preventivos como chequeos médicos y vacunas." ,
+                    "Cobertura para servicios preventivos como chequeos médicos y vacunas.",
                     "Acceso a programas de ejercicio y actividad física.",
                     "Descuento para servicios de salud mental y bienestar",
                 ]
@@ -40,9 +47,9 @@ const plans = [
                     "Acceso a programas de manejo del estrés y la ansiedad.",
                 ]
             },
-            { 
-                name: "Plan Premium", 
-                price: "$60/mes", 
+            {
+                name: "Plan Premium",
+                price: "$60/mes",
                 description: [
                     "Todo lo incluido en los Planes Vital y Activo.",
                     "Cobertura para servicios de medicina alternativa y complementaria.",
@@ -54,27 +61,27 @@ const plans = [
     {
         category: "Adulto mayor establecido",
         options: [
-            { 
-                name: "Plan Seguro", 
-                price: "$20/mes", 
+            {
+                name: "Plan Seguro",
+                price: "$20/mes",
                 description: [
                     "Cobertura para servicios de atención médica primaria y especializada.",
                     "Acceso a programas de manejo de enfermedades crónicas.",
                     "Descuentos en servicios de salud en el hogar.",
-                ] 
+                ]
             },
-            { 
-                name: "Plan Protegido", 
-                price: "$50/mes", 
+            {
+                name: "Plan Protegido",
+                price: "$50/mes",
                 description: [
                     "Todo lo incluido en el Plan Seguro.",
                     "Cobertura para servicios de terapia ocupacional y de habla.",
                     "Acceso a programas de apoyo para cuidadores.",
                 ]
             },
-            { 
-                name: "Plan Excelente", 
-                price: "$80/mes", 
+            {
+                name: "Plan Excelente",
+                price: "$80/mes",
                 description: [
                     "Todo lo incluido en los Planes Seguro y Protegido.",
                     "Cobertura para servicios de medicina paliativa y cuidados al final de la vida.",
@@ -86,27 +93,27 @@ const plans = [
     {
         category: "Adulto mayor avanzado",
         options: [
-            { 
-                name: "Plan Cuidado", 
-                price: "$30/mes", 
+            {
+                name: "Plan Cuidado",
+                price: "$30/mes",
                 description: [
                     "Cobertura para servicios de atención médica en el hogar.",
                     "Acceso a programas de manejo de enfermedades crónicas y complejas.",
                     "Descuentos en servicios de salud en el hogar.",
-                ] 
+                ]
             },
-            { 
-                name: "Plan Apoyo", 
-                price: "$60/mes", 
+            {
+                name: "Plan Apoyo",
+                price: "$60/mes",
                 description: [
                     "Todo lo incluido en el Plan Cuidado.",
                     "Cobertura para servicios de terapia física, ocupacional y de habla.",
                     "Acceso a programas de apoyo para cuidadores y familiares.",
                 ]
             },
-            { 
-                name: "Plan Integrado", 
-                price: "$100/mes", 
+            {
+                name: "Plan Integrado",
+                price: "$100/mes",
                 description: [
                     "Todo lo incluido en los Planes Cuidado y Apoyo.",
                     "Cobertura para servicios de medicina paliativa y cuidados al final de la vida.",
@@ -172,7 +179,7 @@ function loadCatalog() {
 
     // Ahora que los elementos están en el DOM, aplicar las clases
     let planId = null;
-    
+
     if (edad >= 60 && edad < 70) {
         planId = "Jovenadultomayor";
     } else if (edad >= 70 && edad < 85) {
@@ -194,34 +201,13 @@ function loadCatalog() {
     }
 }
 
-
-function openModal(name, price) {
-    // alert("quiero_dormir")
-    document.getElementById("purchaseModal").classList.add("modal--show");
-    document.getElementById("selectedPlan").innerHTML = `Plan seleccionado: ${name} - ${price}`;
-
-}
-
-function closeModal() {
-    document.getElementById("purchaseModal").classList.remove("modal--show");
-}
-
-function confirmPurchase() {
-    Swal.fire({
-        title: "¡Compra realizada!",
-        text: "En breve, un especialista te contactará para brindarte asesoramiento personalizado.",
-        icon: "success"
-      });
-    closeModal();
-}
-
 function searchPlans() {
     const query = document.getElementById("searchBar").value.toLowerCase();
     const catalog = document.getElementById("catalog");
     catalog.innerHTML = "";
 
     // Filtrar los planes dentro de cada categoría buscando en options
-    const filteredPlans = plans.flatMap(plan => 
+    const filteredPlans = plans.flatMap(plan =>
         plan.options
             .filter(option => option.name.toLowerCase().includes(query))
             .map(option => ({ ...option, category: plan.category })) // Agregar categoría para mostrar
@@ -242,7 +228,42 @@ function searchPlans() {
             <ul>
                 ${plan.description.map(desc => `<li>${desc}</li>`).join('')}
             </ul>
+            <button class="quiero_dormir" onclick="openModal('${plan.name}', '${plan.price}')">Comprar</button>
         `;
         catalog.appendChild(card);
     });
 }
+
+function openModal(name, price) {
+    document.getElementById("purchaseModal").classList.add("modal--show");
+    document.getElementById("selectedPlan").innerHTML = `Plan seleccionado: ${name} - ${price}`;
+    localStorage.setItem("plan", name);
+}
+
+function closeModal() {
+    document.getElementById("purchaseModal").classList.remove("modal--show");
+}
+
+function confirmPurchase() {
+    //Subir los datso a Firestore
+    addDoc(collection(db, "clientes"), {
+        name: localStorage.getItem("name"),
+        dni: localStorage.getItem("dni"),
+        phone: localStorage.getItem("phone"),
+        local: localStorage.getItem("local"),
+        age: localStorage.getItem("age"),
+        plan: localStorage.getItem("plan"),
+        timestamp: new Date(),
+    });
+
+    Swal.fire({
+        title: "¡Compra realizada!",
+        text: "En breve, un especialista te contactará para brindarte asesoramiento personalizado.",
+        icon: "success"
+    });
+    closeModal();
+}
+window.openModal = openModal; // Hace que openModal sea accesible desde el HTML
+window.closeModal = closeModal; // Hace que openModal sea accesible desde el HTML
+window.confirmPurchase = confirmPurchase; // Hace que openModal sea accesible desde el HTML
+window.searchPlans = searchPlans; // Hace que openModal sea accesible desde el HTML

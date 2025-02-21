@@ -65,6 +65,7 @@ async function cargarClientes() {
                         <td>${cliente.age}</td>
                         <td>${cliente.phone}</td>
                         <td>${cliente.local}</td>
+                        <td>${cliente.plan}</td>
                     </tr>
             `;
             nuevoCliente.innerHTML = contenido; // Asignar contenido al div
@@ -76,5 +77,21 @@ async function cargarClientes() {
 
     }
 }
-
 cargarClientes()
+
+function searchTable() {
+    const query = document.getElementById("searchBar").value.toLowerCase();
+    const rows = document.querySelectorAll("#tabla tr");
+
+    rows.forEach(row => {
+        const name = row.cells[0].textContent.toLowerCase();
+        const dni = row.cells[1].textContent.toLowerCase();
+
+        if (name.includes(query) || dni.includes(query)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+}
+window.searchTable = searchTable;

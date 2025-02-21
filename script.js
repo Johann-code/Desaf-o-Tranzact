@@ -1,8 +1,3 @@
-// // IMPORTAR FIREBASE Y FIRESTORE
-// import './firebase.js';
-import { db, } from './firebase.js';
-// import { updateProfile, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
 
 // document.getElementById("ingreso").onclick = async (e) => {
@@ -73,18 +68,7 @@ document.getElementById("ingreso").onclick = async (e) => {
         localStorage.setItem ("dni", dni);
         localStorage.setItem ("phone", phone);
         localStorage.setItem ("local", domiciliado);
-        localStorage.setItem ("age", age)
-
-        //Subir los datso a Firestore
-        await addDoc(collection(db, "clientes"), {
-            name: usuario,
-            dni: dni,
-            phone: phone,
-            local: domiciliado,
-            age: age,
-            plan: "yet",
-            timestamp: new Date(),
-        });
+        localStorage.setItem ("age", age);
 
         console.log("Redirigiendo al catálogo...");
         window.location = "catalogo.html"; // Redirigir a la página del catálogo
