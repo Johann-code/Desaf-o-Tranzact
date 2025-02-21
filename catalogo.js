@@ -6,6 +6,14 @@ usuario();
 var edad = localStorage.getItem("age");
 console.log(edad);
 
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("searchBar").addEventListener("keypress", function(e) {
+        if (e.key === "Enter") {
+            searchPlans();
+        }
+    });
+});
+
 document.addEventListener("DOMContentLoaded", function () {
     loadCatalog();
 });
@@ -205,4 +213,36 @@ function confirmPurchase() {
         icon: "success"
       });
     closeModal();
+}
+
+function searchPlans() {
+    const query = document.getElementById("searchBar").value.toLowerCase();
+    const catalog = document.getElementById("catalog");
+    catalog.innerHTML = "";
+
+    // Filtrar los planes dentro de cada categoría buscando en options
+    const filteredPlans = plans.flatMap(plan => 
+        plan.options
+            .filter(option => option.name.toLowerCase().includes(query))
+            .map(option => ({ ...option, category: plan.category })) // Agregar categoría para mostrar
+    );
+
+    if (filteredPlans.length === 0) {
+        catalog.innerHTML = "<p>No se encontraron planes.</p>";
+        return;
+    }
+
+    filteredPlans.forEach(plan => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+            <h3>${plan.name}</h3>
+            <p><strong>Categoría:</strong> ${plan.category}</p>
+            <p><strong>Precio:</strong> ${plan.price}</p>
+            <ul>
+                ${plan.description.map(desc => `<li>${desc}</li>`).join('')}
+            </ul>
+        `;
+        catalog.appendChild(card);
+    });
 }
