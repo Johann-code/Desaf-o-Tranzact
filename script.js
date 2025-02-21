@@ -44,8 +44,13 @@ document.getElementById("ingreso").onclick = async (e) => {
     }
 
     // Validaciones básicas
-    if ( dni.length != 8 || phone.length != 9 || age < 60) {
+    if (dni.length !== 8 || phone.length !== 9) {
         alert("Datos inválidos");
+        return;
+    }
+    
+    if (age < 60) {
+        alert("Eres muy joven para nuestros planes de salud. Regresa en unos años.");
         return;
     }
 
