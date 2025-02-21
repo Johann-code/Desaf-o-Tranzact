@@ -60,14 +60,21 @@ button:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 280px;
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 .card h3 {
     color: rgb(73, 0, 125);
-    margin-bottom: 10px;
+    margin: 5px ;
+}
+h3{
+    font-size: 21.5px;
 }
 .card p {
     color: #2c3e50;
-    margin-bottom: 5px;
+    margin: 5px;
 }
 #tran_log{
     height: 70px;
@@ -123,20 +130,20 @@ footer {
     color: #fff; /* Mantiene el color blanco brillante */
   }
   
-  footer::before {
+  /* footer::before {
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 250%; /* TamaÃ±o mÃ¡s grande para el fondo */
+    width: 250%; 
     height: 250%;
-    background: url('https://www.transparenttextures.com/patterns/diagonal-stripes-light.png') repeat; /* Fondo texturizado */
-    background-size: 50px 50px; /* Ajuste del tamaÃ±o de la textura */
-    transform: translate(-50%, -50%) rotate(45deg); /* Rota y centra el fondo */
-    z-index: -1; /* Coloca el fondo detrÃ¡s del texto */
-    opacity: 0.25; /* Aumento de opacidad en el fondo */
-    animation: move-background 10s linear infinite; /* Movimiento suave de fondo */
-  }
+    background: url('https://www.transparenttextures.com/patterns/diagonal-stripes-light.png') repeat; /* Fondo texturizado 
+    background-size: 50px 50px; /* Ajuste del tamaÃ±o de la textura 
+    transform: translate(-50%, -50%) rotate(45deg); /* Rota y centra el fondo 
+    z-index: -1; /* Coloca el fondo detrÃ¡s del texto 
+    opacity: 0.25; /* Aumento de opacidad en el fondo 
+    animation: move-background 10s linear infinite; /* Movimiento suave de fondo 
+  } */
   
   @keyframes move-background {
     0% { background-position: 0 0; }
